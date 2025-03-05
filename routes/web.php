@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProfilController;
 use App\Http\Controllers\Visiteur\Auth\LoginController;
 use App\Http\Controllers\Visiteur\Auth\RegisterController;
 
@@ -17,7 +18,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->middleware(['auth'])->group(function(){
 
     Route::controller(DashboardController::class)->group(function(){
-        Route::get('dashboard','index');
+        Route::get('dashboard','index')->name('admin.dashboard');
+    });
+    Route::controller(ProfilController::class)->group(function(){
+        Route::get('profil','index')->name('admin.profil');
+        Route::post('profil','updateProfile')->name('admin.profil');
+        Route::post('profil-avatar','updateAvatar')->name('admin.avatar');
     });
 });
 
