@@ -19,7 +19,7 @@ class RegisterController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:eco_contributeurs',
+            'email' => 'required|email|unique:visiteurs',
             'password' => [
                 'required',
                 'string',

@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-1">
-                        <h2 class="fw-bold mb-0">10 800</h2>
+                        <h2 class="fw-bold mb-0">{{ $total_videos }}</h2>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-1">
-                        <h2 class="fw-bold mb-0">2 456</h2>
+                        <h2 class="fw-bold mb-0">{{ $total_articles }}</h2>
                     </div>
                 </div>
             </div>
@@ -67,14 +67,14 @@
                 <div class="card-body d-flex flex-column gap-3">
                     <div class="d-flex align-items-center justify-content-between lh-1">
                         <div>
-                            <span class="fs-6 text-uppercase fw-semibold ls-md">Musique</span>
+                            <span class="fs-6 text-uppercase fw-semibold ls-md">Formations</span>
                         </div>
                         <div>
                             <span class="fe fe-music fs-3 text-primary"></span>
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-1">
-                        <h2 class="fw-bold mb-0">122 456</h2>
+                        <h2 class="fw-bold mb-0">{{ $total_formations }}</h2>
                     </div>
                 </div>
             </div>
@@ -86,14 +86,14 @@
                 <div class="card-body d-flex flex-column gap-3">
                     <div class="d-flex align-items-center justify-content-between lh-1">
                         <div>
-                            <span class="fs-6 text-uppercase fw-semibold ls-md">Utilisateurds</span>
+                            <span class="fs-6 text-uppercase fw-semibold ls-md">Visiteur</span>
                         </div>
                         <div>
                             <span class="fe fe-users fs-3 text-primary"></span>
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-1">
-                        <h2 class="fw-bold mb-0">22 786</h2>
+                        <h2 class="fw-bold mb-0">{{ $total_visiteurs }}</h2>
                     </div>
                 </div>
             </div>
