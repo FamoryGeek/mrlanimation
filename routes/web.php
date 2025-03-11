@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\TypeContentController;
 use App\Http\Controllers\Admin\TypeSubscriptionController;
 use App\Http\Controllers\Visiteur\Auth\LoginController;
 use App\Http\Controllers\Visiteur\Auth\RegisterController;
-
+use App\Http\Controllers\Visiteur\ProfilController as VisiteurProfilController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -91,5 +91,11 @@ Route::prefix( 'visiteur')->middleware( 'auth:visiteur')->group(function(){
 
     Route::controller( \App\Http\Controllers\Visiteur\DashboardController::class)->group(function(){
         Route::get('dashboard','index')->name('visiteur.dashboard');
+    });
+
+    Route::controller( VisiteurProfilController::class)->group(function(){
+        Route::get('profil','index')->name('visiteur.profil');
+        Route::post('profil','updateProfile')->name('visiteur.profil');
+        Route::post('profil-avatar','updateAvatar')->name('visiteur.avatar');
     });
 });

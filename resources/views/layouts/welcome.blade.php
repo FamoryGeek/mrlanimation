@@ -7,7 +7,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="Famory KEITA" />
+    <meta name="description" content="Divertis-toi, éduque-toi et connecte-toi avec les esprits créatifs d’Afrique francophone sur Mr. Lanimation !">
+    <meta name="keywords" content="Divertissement africain, Musique, Podcasts, Interviews, Formations, Mr. Lanimation">
+    <meta name="author" content="Mr. Lanimation">
 
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/logo-mr.png') }}" />
@@ -24,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/libs/tiny-slider/dist/tiny-slider.css') }}" />
-    <title>Acceuil | MR_LANIMATION </title>
+    <title>Mr. Lanimation – Contenu exclusif africain</title>
 </head>
 
 <body class="bg-white">

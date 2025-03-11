@@ -39,6 +39,7 @@ class RegisterController extends Controller
         ]);
 
         Auth::guard('visiteur')->login($user);
+        toastr()->success("Bienvenue, {$user->name} ! Heureux de vous revoir.");
         return redirect()->route('visiteur.dashboard');
     }
 }

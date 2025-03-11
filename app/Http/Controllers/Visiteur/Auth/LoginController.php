@@ -24,14 +24,17 @@ class LoginController extends Controller
 
 
         if (Auth::guard('visiteur')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::guard('visiteur')->user();
+            toastr()->success("Bienvenue, {$user->name} ! Heureux de vous revoir.");
             return redirect()->route('visiteur.dashboard');
         }
-        return toastr()->error('Identifiants incorrects.');
+        return redirect()->back()->withErrors(['email' => 'Identifiants incorrects.']);
     }
 
     public function logout()
     {
         Auth::guard('visiteur')->logout();
-        return redirect()->url('/');
+        flash()->success('Vous avez bien été déconnecté.');
+        return redirect()->route('home');
     }
 }
