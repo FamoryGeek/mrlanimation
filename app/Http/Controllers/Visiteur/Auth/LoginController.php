@@ -25,7 +25,7 @@ class LoginController extends Controller
 
         if (Auth::guard('visiteur')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::guard('visiteur')->user();
-            toastr()->success("Bienvenue, {$user->name} ! Heureux de vous revoir.");
+            flash()->success("Bienvenue, {$user->name} ! Heureux de vous revoir.");
             return redirect()->route('visiteur.dashboard');
         }
         return redirect()->back()->withErrors(['email' => 'Identifiants incorrects.']);

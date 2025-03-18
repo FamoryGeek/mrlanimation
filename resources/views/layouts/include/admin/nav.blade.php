@@ -22,6 +22,7 @@
                 <div id="navCourses" class="collapse {{ request()->routeIs('admin.types-content','admin.contents') ? 'show' : '' }} " data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.categorie') ? 'active' : '' }} " href="{{ route('admin.categorie') }}">Categorie</a>
                             <a class="nav-link {{ request()->routeIs('admin.types-content') ? 'active' : '' }} " href="{{ route('admin.types-content') }}">Type contenu</a>
                         </li>
                         <li class="nav-item">
@@ -97,5 +98,49 @@
                     </ul>
                 </div>
             </li>
+            <!-- Nav item -->
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary " href="#" data-bs-toggle="modal" data-bs-target="#addN">
+                  <i class="nav-icon fe fe-message-square me-2"></i>
+                  Newsletter
+                </a>
+              </li>
     </div>
 </nav>
+
+{{-- modal Newsletter --}}
+<div class="modal fade" id="addN" tabindex="-1" role="dialog" aria-labelledby="addN" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title mb-0" id="newCatgoryLabel">
+                    Créer une nouvelle categorie
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="needs-validation" method="POST" action="{{ route('newsletter.send') }}">
+                    @csrf
+                    <div class="mb-3 mb-2">
+                        <label class="form-label" for="name">
+                            Message
+                        </label>
+                        <textarea type="text" class="form-control  @error('description') is-invalid @enderror"
+                            id="description" name="content" placeholder="Tapez votre message ici..."  /></textarea>
+                        @error('content')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">
+                            Envoyer
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Fermer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

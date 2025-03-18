@@ -42,11 +42,12 @@
                             <table id="dataTableBasic" class="table table-hover" style="width: 100%">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>Title</th>
+                                        <th>Titre</th>
                                         <th>Description</th>
                                         <th>Type</th>
+                                        <th>Categorie</th>
+                                        <th>Publié</th>
                                         <th>Abonnement requis</th>
-                                        <th>Auteur</th>
                                         <th>medias</th>
                                         <th></th>
                                     </tr>
@@ -60,15 +61,16 @@
                                                     {{ Str::limit($value->description, 30) }}
                                                 </span>
                                             </td>
-                                            
+
                                             <td>{{ strtoupper($value->type_content->name) }}</td>
+                                            <td>{{ $value->categorie->name }}</td>
+                                            <td>{{ $value->is_published ? 'Oui' : 'Non' }}</td>
                                             <td>
                                                 <span class="badge {{ $value->subscription_required == 1 ? 'bg-success' : 'bg-danger' }}">
                                                     {{ $value->subscription_required == 1 ? 'oui' : 'non' }}
                                                 </span>
                                             </td>
-                                            <td>{{ $value->user->name }}</td>
-                                            <td><a href="{{ asset('storage/' . $value->file_path) }}" target="_blank">Voir</a></td>
+                                            <td><a href="{{ asset('storage/' . $value->file_path) }}" target="_blank">Voir le fichier</a></td>
 
                                             <td>
                                             <span class="dropdown dropstart">

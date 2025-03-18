@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class TypeSubscription extends Model
 {
     protected $guarded=[];
-    
-    public function subscriptions(): HasMany{
+
+    public function subscriptions(){
         return $this->hasMany(Subscription::class);
     }
 }

@@ -9,13 +9,17 @@ class Subscription extends Model
 {
     protected $guarded=[];
 
-    public function visiteur():BelongsTo
+    public function visiteur()
     {
         return $this->belongsTo(Visiteur::class);
     }
-    public function type_subscription():BelongsTo
+    public function type_subscription()
     {
         return $this->belongsTo(TypeSubscription::class);
     }
-    
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

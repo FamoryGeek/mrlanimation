@@ -10,7 +10,7 @@
     <meta name="author" content="Codescandy" />
 
     <!-- Favicon icon-->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/favicon.ico') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/logo-mr.png') }}" />
 
     <!-- darkmode js -->
     <script src="{{ asset('assets/js/vendors/darkMode.js') }}"></script>
@@ -23,7 +23,7 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
     <link rel="canonical" href="{{ route('register') }}" />
-    <title>Inscription | MR_LANIMATION </title>
+    <title>Inscription | Mr. Lanimation </title>
 </head>
 
 <body>
@@ -37,8 +37,8 @@
                         <!-- Card body -->
                         <div class="card-body p-6 d-flex flex-column gap-4">
                             <div>
-                                <a href="/"><img src="{{ asset('assets/images/brand/logo/logo-icon.svg') }}"
-                                        class="mb-4" alt="logo" /></a>
+                                <a href="/" class="fs-4 fw-bold text-center"><img src="{{ asset('assets/images/brand/logo/mr.png') }}"
+                                    class="mb-4" alt="logo-icon" /></a>
                                 <div class="d-flex flex-column gap-1">
                                     <h1 class="mb-0 fw-bold">Inscription</h1>
                                     <span>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use App\Models\Content;
+use App\Models\Categorie;
 use App\Models\TypeContent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,8 @@ class ContentController extends Controller
     {
         $contents = Content::all();
         $type_content = TypeContent::all();
-        return view("admin.content.show", compact("contents", "type_content"));
+        $categories = Categorie::all();
+        return view("admin.content.show", compact("contents", "type_content","categories"));
     }
 
 
@@ -28,10 +30,10 @@ class ContentController extends Controller
                 'title' => 'required|string|max:255',
                 'description' => 'nullable|string',
                 'type_content_id' => 'required|exists:type_contents,id',
-                'cover' => 'nullable|file|mimes:jpg,png,jpeg,gif,svg|max:2048',
-                'file_path' => 'nullable|file|mimes:mp4,mp3,pdf,jpg,png,docx',
-                'url' => 'nullable|url',
-                'subscription_required' => 'nullable',
+                'categorie_id' => 'required|exists:categories,id',
+                'cover' => 'nullable|image|mimes:jpg,png|max:5120',
+                'file_path' => 'nullable|file|mimes:mp4,mp3,jpg,png,pdf|max:20480',
+                'is_premium' => 'boolean',
             ]);
             // Définir le chemin du dossier en fonction du type
             $typeFolder = $this->getTypeFolder($request->type_content_id);
@@ -46,10 +48,11 @@ class ContentController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'type_content_id' => $request->type_content_id,
+                'categorie_id' => $request->categorie_id,
                 'cover' => $coverPath,
                 'file_path' => $filePath,
-                'url' => $request->url,
-                'subscription_required' => $request->subscription_required ?? false,
+                'is_premium' => $request->is_premium ?? false,
+                'is_published' => true
             ]);
             flash()->success('Contenu ajouté avec succès.');
             return redirect()->route('admin.contents');
@@ -69,10 +72,10 @@ class ContentController extends Controller
                 'title' => 'required|string|max:255',
                 'description' => 'nullable|string',
                 'type_content_id' => 'required|exists:type_contents,id',
-                'cover' => 'nullable|file|mimes:jpg,png,jpeg,gif,svg|max:2048',
-                'file_path' => 'nullable|file|mimes:mp4,mp3,pdf,jpg,png,docx',
-                'url' => 'nullable|url',
-                'subscription_required' => 'nullable',
+                'categorie_id' => 'required|exists:categories,id',
+                'cover' => 'nullable|image|mimes:jpg,png|max:5120',
+                'file_path' => 'nullable|file|mimes:mp4,mp3,jpg,png,pdf|max:20480',
+                'is_premium' => 'boolean',
             ]);
             $content = Content::findOrFail($id);
             $typeFolder = $request->type_content_id;
@@ -106,10 +109,11 @@ class ContentController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'type_content_id' => $request->type_content_id,
+                'categorie_id' => $request->categorie_id,
                 'cover' => $coverPath,
                 'file_path' => $filePath,
-                'url' => $request->url,
-                'subscription_required' => $request->subscription_required ?? false,
+                'is_premium' => $request->is_premium ?? false,
+                'is_published' => true
             ]);
             flash()->success('Contenu mis à jour avec succès.');
             return redirect()->route('admin.contents');

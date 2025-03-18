@@ -9,7 +9,7 @@ class TypeContent extends Model
 {
     protected $guarded=[];
 
-    public function contents():HasMany{
+    public function contents(){
         return $this->hasMany(Content::class);
     }
 }

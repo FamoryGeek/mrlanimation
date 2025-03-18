@@ -18,9 +18,10 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Visiteur::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(TypeSubscription::class)->constrained()->onDelete('cascade');
+            $table->enum('status', ['active', 'cancelled', 'expired']);
+            $table->string('payment_method');
             $table->timestamp('start_date');
             $table->timestamp('end_date');
-            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

@@ -22,8 +22,34 @@ class Visiteur extends Authenticatable
 
     protected $guard = 'visiteur';
 
-    public function subscriptions(): HasMany{
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function playlists()
+    {
+        return $this->hasMany(Playlist::class);
+    }
+
+    public function subscriptions()
+    {
         return $this->hasMany(Subscription::class);
+    }
+
+    public function userStats()
+    {
+        return $this->hasMany(UserStat::class);
+    }
+
+    public function userActivities()
+    {
+        return $this->hasMany(UserActivity::class);
     }
 
 }

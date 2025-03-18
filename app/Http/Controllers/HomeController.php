@@ -11,18 +11,59 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+   /*  public function __construct()
     {
         $this->middleware('auth');
-    }
+    } */
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function interview()
     {
-        return view('home');
+        return view('interviews');
     }
+
+    public function privacy()
+    {
+        return view('privacy');
+    }
+
+    public function term()
+    {
+        return view('terms');
+    }
+
+    public function faq()
+    {
+        return view('faq');
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function about()
+    {
+        return view('about');
+    }
+
+    public function formation()
+    {
+        return view('formations');
+    }
+
+    public function musique()
+    {
+        return view('musiques');
+    }
+
+    public function podcast()
+    {
+        return view('podcasts');
+    }
+
 }

@@ -1,21 +1,43 @@
 <?php
 
-use App\Http\Controllers\Admin\AllUserController;
-use App\Http\Controllers\Admin\ContentController;
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\Admin\ProfilController;
-use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Admin\AllUserController;
+use App\Http\Controllers\Admin\CategorieController;
+use App\Http\Controllers\Admin\ContentController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TypeContentController;
-use App\Http\Controllers\Admin\TypeSubscriptionController;
+use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Visiteur\Auth\LoginController;
+use App\Http\Controllers\Admin\TypeSubscriptionController;
 use App\Http\Controllers\Visiteur\Auth\RegisterController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Visiteur\ProfilController as VisiteurProfilController;
+use App\Models\Categorie;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+
+Route::controller(HomeController::class)->group(function(){
+    Route::get('interviews','interview')->name('interview');
+    Route::get('podcasts','podcast')->name('podcast');
+    Route::get('musiques','musique')->name('musique');
+    Route::get('formations','formation')->name('formation');
+    Route::get('about','about')->name('about');
+    Route::get('contact','contact')->name('contact');
+    Route::get('faq','faq')->name('faq');
+    Route::get('terms','term')->name('term');
+    Route::get('privacy','privacy')->name('privacy');
+});
+
+
 
 Auth::routes();
 
@@ -53,6 +75,14 @@ Route::prefix('admin')->middleware( ['auth'])->group(function(){
 
     });
 
+    Route::controller( CategorieController::class)->group(function(){
+        Route::get('categories','index')->name('admin.categorie');
+        Route::post('categorie/create','save')->name('admin.categorie.save');
+        Route::put('categorie/update/{id}','update')->name('admin.categorie.update');
+        Route::delete('categorie/delete/{id}','delete')->name('admin.categorie.delete');
+
+    });
+
     Route::controller( ContentController::class)->group(function(){
         Route::get('contents','index')->name('admin.contents');
         Route::post('content/create','save')->name('admin.content.save');
@@ -71,6 +101,9 @@ Route::prefix('admin')->middleware( ['auth'])->group(function(){
         Route::put('visiteur/unlock/{id}','unlock')->name('admin.visiteur.unlock');
 
     });
+
+    Route::post('/newsletter/send', [NewsletterController::class, 'send'])->name('newsletter.send');
+
 
 
 });

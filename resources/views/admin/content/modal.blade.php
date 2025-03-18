@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title mb-0" id="newCatgoryLabel">
-                    Créer un nouveau de contenu
+                    Créer un nouveau  contenu
                 </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -53,11 +53,28 @@
                         @enderror
                     </div>
                     <div class="mb-3 mb-2">
-                        <label class="form-label" for="subscription_required">
-                            Abonnement requis?
+                        <label class="form-label" for="categorie_id">
+                            Categorie
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="checkbox" class="form-checkbox" name="subscription_required" id="subscription_required" >
+
+                        <select class="form-select" name="categorie_id" id="categorie_id" required>
+                            <option selected value="">Select</option>
+                            @foreach ($categories as $value )
+                            <option value="{{ $value->id }}">{{ strtoupper($value->name) }}</option>
+                        @endforeach
+
+                        </select>
+                        @error('categorie_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3 mb-2">
+                        <label class="form-label" for="subscription_required">
+                            Contenu premium ?
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="checkbox" class="form-checkbox" value="1" name="is_premium" id="is_premium" >
 
                         @error('subscription_required')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -158,11 +175,28 @@
                             @enderror
                         </div>
                         <div class="mb-3 mb-2">
-                            <label class="form-label" for="subscription_required">
-                                Abonnement requis?
+                            <label class="form-label" for="categorie_id">
+                                Categorie
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="checkbox" class="form-checkbox" name="subscription_required" {{ old('name', $content->subscription_required) == 1 ? "checked": "" }} id="subscription_required" >
+
+                            <select class="form-select" name="categorie_id" id="categorie_id" required>
+                                <option selected value="">Select</option>
+                                @foreach ($categories as $value )
+                                <option value="{{ $value->id }}" {{ $value->id == $content->categorie_id ? 'selected' : '' }}>{{ strtoupper($value->name) }}</option>
+                            @endforeach
+
+                            </select>
+                            @error('categorie_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3 mb-2">
+                            <label class="form-label" for="subscription_required">
+                                Contenu premium ?
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="checkbox" class="form-checkbox" value="1" {{ $content->is_premium == true ? "checked" : "" }} name="is_premium" id="is_premium" >
 
                             @error('subscription_required')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -206,3 +240,12 @@
         </div>
     </div>
 @endforeach
+<!-- Intégration de TinyMCE -->
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#editor',
+        plugins: 'advlist autolink lists link image charmap print preview anchor',
+        toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat'
+    });
+</script>
